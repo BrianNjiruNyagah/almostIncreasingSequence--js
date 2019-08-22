@@ -1,0 +1,26 @@
+function almostIncreasingSequence(sequence) {
+    //variable that records occasions where the order gets dismantled
+    var counter = 0;
+    
+    for(var i = 0; i<sequence.length;i++){
+        //filters when a change of order gets dismantled
+        if(sequence[i] >= sequence[i+1]){ 
+           counter++;
+            //removes the count of a change if the change occurs at the end of an array
+            if(i==sequence.length-2&&counter == 1){
+                counter --;
+                break;
+            } 
+            //sorts out the issue when at the final of an array a number gets unorganized 
+            if(sequence[i+1] <= sequence[i-1] && counter > 0){
+                counter ++;
+                if(sequence[i+2]>sequence[i]&&sequence[i+2]>sequence[i+1]){
+                    counter--;
+                }
+            }   
+        } 
+    }
+    
+    //sorts out if the an array accomplishes the appropriate sequence
+    return counter <= 1;
+}
